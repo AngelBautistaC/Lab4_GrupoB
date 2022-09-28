@@ -1,0 +1,85 @@
+package com.example.lab4_20222.entity;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "cuenta")
+public class Cuenta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcuenta", nullable = false)
+    private Integer id;
+
+    @Size(max = 45)
+    @Column(name = "correo", length = 45)
+    private String correo;
+
+    @Size(max = 80)
+    @NotNull
+    @Column(name = "direccion", nullable = false, length = 80)
+    private String direccion;
+
+    @Size(max = 128)
+    @NotNull
+    @Column(name = "password", nullable = false, length = 128)
+    private String password;
+
+    @Size(max = 10)
+    @NotNull
+    @Column(name = "telefono", nullable = false, length = 10)
+    private String telefono;
+
+    @Column(name = "admin")
+    private Integer admin;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
+
+}
