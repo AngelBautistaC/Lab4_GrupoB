@@ -1,8 +1,10 @@
 package com.example.lab4_20222.controllers;
 
 import com.example.lab4_20222.entity.Mascota;
+import com.example.lab4_20222.entity.Servicio;
 import com.example.lab4_20222.repositories.MascotaRepository;
 import com.example.lab4_20222.repositories.RazaRepository;
+import com.example.lab4_20222.repositories.ServicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ public class MascotaController {
     MascotaRepository mascotaRepository;
     @Autowired
     RazaRepository razaRepository;
+
+    @Autowired
+    ServicioRepository servicioRepository;
     @GetMapping(value = {"", "/lista"})
     public String listaMascota(Model model) {
         model.addAttribute("listaMascota", mascotaRepository.findAll());
@@ -77,7 +82,13 @@ public class MascotaController {
         }
 
     }
-
+    @GetMapping(value = "/servicioinfo")
+    public String listaServiciosMascotas(@ModelAttribute("servicio") Servicio servicio,
+                                         @RequestParam("id") int idmascota, Model model){
+        model.addAttribute("listaServiciosMascota", servicioRepository.listaServiciosMascota(idmascota));
+        model.addAttribute("idmascota",idmascota);
+        return "mascota/listaservmasc";
+    }
     @GetMapping("/delete")
     public String borrarMascota(Model model,
                                 @RequestParam("id") int id,
