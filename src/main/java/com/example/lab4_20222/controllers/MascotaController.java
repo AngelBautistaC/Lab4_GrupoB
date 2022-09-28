@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -52,6 +53,20 @@ public class MascotaController {
         } else {
             return "redirect:/mascota/lista";
         }
+    }
+
+    @GetMapping("/delete")
+    public String borrarMascota(Model model,
+                                @RequestParam("id") int id,
+                                RedirectAttributes attr) {
+
+        Optional<Mascota> optMascota = mascotaRepository.findById(id);
+
+        if (optMascota.isPresent()) {
+            mascotaRepository.deleteById(id);
+            attr.addFlashAttribute("msg","Mascota borrado exitosamente");
+        }
+        return "redirect:/mascota/lista";
     }
 
 

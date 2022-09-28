@@ -24,12 +24,14 @@ public class ServiciosController {
     ResponsableRepository responsableRepository;
     @Autowired
     ServicioRepository servicioRepository;
+    @Autowired
+    OpcionServicioRepository opcionServicioRepository;
 
     @GetMapping(value = {"/lista", ""})
     public String listarServicios(Model model) {
         List<Servicio> lista = servicioRepository.findAll();
         model.addAttribute("servicioLista", lista);
-        model.addAttribute("listaOpServ", opcionRepository.findAll());
+        model.addAttribute("listaOpServ", opcionServicioRepository.findAll());
         return "servicio/lista";
     }
 
@@ -42,4 +44,7 @@ public class ServiciosController {
         model.addAttribute("listaResponsable", responsableRepository.findAll());
         return "servicio_nuevo";
     }
+
+
+
 }
