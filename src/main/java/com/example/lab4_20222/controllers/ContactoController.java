@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -50,6 +52,30 @@ public class ContactoController {
         } else {
             return "redirect:/contacto/lista";
         }
+    }
+    @PostMapping("/save")
+    public String saveContacto(Cuenta contacto, RedirectAttributes attr, Model model) {
+
+        if (contacto.getId() == 0) {
+            attr.addFlashAttribute("msg", "Contacto creado exitosamente");
+        } else {
+            attr.addFlashAttribute("msg", "Contacto actualizado exitosamente");
+        }
+
+        if (contacto.getId() != null) {
+            cuentaRepository.save(contacto);
+            return "redirect:/mascota/lista";
+        } else {
+            model.addAttribute("errProd", "Error al guardar contacto");
+            model.addAttribute("listaCuenta", cuentaRepository.findAll());
+            if (contacto.getId() != 0) {
+                model.addAttribute("contacto", contacto);
+                return "contacto/editar";
+            } else {
+                return "contacto/newForm";
+            }
+        }
+
     }
 
 
