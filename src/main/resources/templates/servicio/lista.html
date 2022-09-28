@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/general.html :: cabecera('Lista Servicios')">
-  </head>
-  <body>
+
+
+<div  th:replace="fragments/navbar.html :: cabecera(title='Página de prueba')">
+</div>
+  <body  id="page-top">
+  <header th:replace="fragments/navbar.html ::navbar">
+
+  </header>
+
     <main>
       <div class="container px-4 py-5">
         <h1 class="pb-2 border-bottom">Detalles de servicio</h1>
