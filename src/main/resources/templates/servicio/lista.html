@@ -5,9 +5,9 @@
   <body>
     <main>
       <div class="container px-4 py-5">
-        <h1 class="pb-2 border-bottom">Lista de servicios</h1>
+        <h1 class="pb-2 border-bottom">Detalles de servicio</h1>
         <div class="d-flex mt-3 mb-4">
-          <a class="btn btn-primary" th:href="@{'/servicio/nuevocrear'}">Crear servicio</a>
+          <a class="btn btn-primary" th:href="@{'/servicio/nuevocrear'}">Nuevo servicio</a>
           <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
         <div class="alert alert-success" role="alert" th:if="${(msg != null) && (msg == '0')}">
@@ -20,24 +20,28 @@
         <table class="table table-striped">
           <tr>
             <th>#</th>
-            <th>Servicio</th>
             <th>Mascota</th>
-            <th>Precio</th>
+            <th>Edad</th>
             <th>Hora inicio</th>
             <th>Duración</th>
-            <th>Responsable</th>
             <th>Entrega</th>
+            <th>Responsable</th>
+            <th>Servicio</th>
+
             <th></th>
           </tr>
           <tr th:each="opserv,i : ${listaOpServ}">
             <td th:text="${i.index + 1}"></td>
-            <td th:text="${opserv.idopcion.descripcion}"></td>
             <td th:text="${opserv.idservicio.idmascota.nombre}"></td>
-            <td th:text="${opserv.idopcion.precio}"></td>
+            <td th:text="${opserv.idservicio.idmascota.anho}"></td>
+
+
             <td th:text="${opserv.idservicio.horainicio}"></td>
             <td th:text="${opserv.idservicio.duracion} + min"></td>
-            <td th:text="${opserv.idservicio.idresponsable.nombre}"></td>
             <td th:text="${opserv.idservicio.entrega}"></td>
+            <td th:text="${opserv.idservicio.idresponsable.nombre}"></td>
+            <td th:text="${opserv.idopcion.descripcion}"></td>
+
             <td>
               <a class="btn btn-success" th:href="@{'/servicio/editar?id=' + ${opserv.id}}">Editar
               </a>
