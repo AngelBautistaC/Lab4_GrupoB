@@ -70,7 +70,7 @@ public class MascotaController {
             model.addAttribute("listaRaza", razaRepository.findAll());
             if (mascota.getIdmascota() != 0) {
                 model.addAttribute("mascota", mascota);
-                return "mascota/editar";
+                return "redirect:/mascota/lista";
             } else {
                 return "mascota/form";
             }

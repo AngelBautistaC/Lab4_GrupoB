@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-  <head th:replace="fragment/navbar.html :: cabecera('Lista de Mascotas en TeleVet')">
+  <head>
+    <div  th:replace="fragments/navbar.html :: cabecera(title='Página de prueba')">
+    </div>
+
+
   </head>
-  <body>
+  <body id="page-top">
+  <header th:replace="fragments/navbar.html ::navbar">
+
+  </header>
+
+
     <div class="container">
       <h1>Lista de Mascotas en TeleVet</h1>
       <a class="btn btn-primary mt-4 mb-4" th:href="@{'/mascota/new'}">Nueva Mascota</a>
