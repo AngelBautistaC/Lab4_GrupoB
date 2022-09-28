@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Nuevo servicio</title>
+  </head>
+  <body>
+    <main>
+      <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Editar Servicio</h1>
+        <form method="post" th:action="@{'/servicio/guardar'}" class="mt-2">
+          <input name="idopcion" type="number" class="form-control"
+                 th:value="${opcion.id}" hidden>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" class="form-control"
+                   maxlength="45" th:value="${opcion.descripcion}" required disabled>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tiempo en minutos</label>
+            <input type="text" class="form-control"
+                   th:value="${opcion.tiempominutos}" required disabled>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Precio</label>
+            <input name="precioopc" type="number" step="0.01" class="form-control" min="0"
+                   th:value="${opcion.precio}" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Responsable</label>
+            <div class="mb-3">
+              <input name="idservicio" type="number" class="form-control" th:value="${servicio.id}" hidden>
+              <select class="form-select" aria-label="Default select example" name="idresponsable">
+                <option th:each="resp : ${listaResponsable}" th:value="${resp.id}" th:text="${resp.nombre}" th:selected="${servicio.idresponsable.id == resp.id}"></option>
+              </select>
+            </div>
+          </div>
+          <a th:href="@{'/servicio/lista'}" class="btn btn-danger">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+    </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  </body>
+</html>

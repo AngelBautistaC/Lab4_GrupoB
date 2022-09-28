@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <title>Nuevo Contacto</title>
+    </head>
+    <body class="container">
+        <h2 th:text="${cuenta.id == 0? 'Nuevo Contacto' : 'Editar Contacto'}">Nuevo Contacto</h2>
+        <hr/>
+
+        <form method="post" th:action="@{/contacto/save}" th:object="${cuenta}">
+            <div class="form-row">
+                <div class="col-md-8 mb-4">
+                    <div class="form-group">
+                        <label  class="small mb-1">Correo</label>
+                        <input class="form-control" th:field="*{correo}">
+                    </div>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <div class="form-group">
+                        <label  class="small mb-1">Contraseña</label>
+                        <input class="form-control" th:field="*{password}">
+
+                    </div>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <div class="form-group">
+                        <label class="small mb-1">Telefono</label>
+                        <input class="form-control" th:field="*{telefono}">
+                    </div>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <div class="form-group">
+                        <label class="small mb-1">Mascota</label>
+                        <input class="form-control" th:field="*{idmascota}">
+                    </div>
+                </div>
+                <div class="form-group col-md-8 mt-4">
+                    <a th:href="@{/contacto/lista}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </div>
+        </form>
+        <br>
+    </body>
+</html>
