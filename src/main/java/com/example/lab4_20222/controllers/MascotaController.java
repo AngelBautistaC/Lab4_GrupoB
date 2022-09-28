@@ -18,7 +18,7 @@ public class MascotaController {
     public String listaMascota(Model model) {
         model.addAttribute("listaMascota", mascotaRepository.findAll());
 
-        return "mascotas/lista";
+        return "mascotas/lista_mascotas";
     }
 
 }
