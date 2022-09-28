@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -42,7 +44,22 @@ public class ServiciosController {
         model.addAttribute("listaMascotas", mascotaRepository.findAll());
         model.addAttribute("listaCuenta",cuentaRepository.findAll());
         model.addAttribute("listaResponsable", responsableRepository.findAll());
-        return "servicio_nuevo";
+        return "/servicio/nuevo";
+    }
+
+    @PostMapping(value = "/guardarserv")
+    public String guardarServ(Servicio servicio){
+        servicioRepository.save(servicio);
+        return "redirect:/servicio/lista";
+    }
+
+    @GetMapping(value = "/editar")
+    public String editarServ(Model model, @RequestParam("id") String id){
+        model.addAttribute("listaOpcion", opcionRepository.findAll());
+        model.addAttribute("listaMascotas", mascotaRepository.findAll());
+        model.addAttribute("listaCuenta",cuentaRepository.findAll());
+        model.addAttribute("listaResponsable", responsableRepository.findAll());
+        return "/servicio/editar";
     }
 
 
