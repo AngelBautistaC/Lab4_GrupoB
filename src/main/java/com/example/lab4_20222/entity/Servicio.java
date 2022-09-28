@@ -1,5 +1,7 @@
 package com.example.lab4_20222.entity;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -19,8 +21,8 @@ public class Servicio {
     @JoinColumn(name = "cuenta_idcuenta", nullable = false)
     private Cuenta idcuenta;
 
-    @Column(name = "hora_inicio", nullable = false)
-    private LocalDateTime horainicio;
+    @Column(name = "hora_inicio", nullable = true)
+    private String horainicio;
 
     @Column(name = "duracion", nullable = false)
     private Integer duracion;
@@ -57,11 +59,11 @@ public class Servicio {
         this.duracion = duracion;
     }
 
-    public LocalDateTime getHorainicio() {
+    public String getHorainicio() {
         return horainicio;
     }
 
-    public void setHorainicio(LocalDateTime horainicio) {
+    public void setHorainicio(String horainicio) {
         this.horainicio = horainicio;
     }
 

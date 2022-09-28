@@ -50,18 +50,8 @@ public class ServiciosController {
     @PostMapping(value = "/guardarserv")
     public String guardarServ(Servicio servicio){
         servicioRepository.save(servicio);
+        System.out.println(servicio.getId());
         return "redirect:/servicio/lista";
     }
-
-    @GetMapping(value = "/editar")
-    public String editarServ(Model model, @RequestParam("id") String id){
-        model.addAttribute("listaOpcion", opcionRepository.findAll());
-        model.addAttribute("listaMascotas", mascotaRepository.findAll());
-        model.addAttribute("listaCuenta",cuentaRepository.findAll());
-        model.addAttribute("listaResponsable", responsableRepository.findAll());
-        return "/servicio/editar";
-    }
-
-
 
 }
