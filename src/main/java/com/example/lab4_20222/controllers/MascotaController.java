@@ -27,7 +27,7 @@ public class MascotaController {
     public String listaMascota(Model model) {
         model.addAttribute("listaMascota", mascotaRepository.findAll());
 
-        return "mascota /lista";
+        return "mascota/lista";
     }
 
     @GetMapping("/new")
@@ -68,5 +68,7 @@ public class MascotaController {
         }
         return "redirect:/mascota/lista";
     }
+
+
 
 }
