@@ -26,7 +26,7 @@ public class MascotaController {
     public String listaMascota(Model model) {
         model.addAttribute("listaMascota", mascotaRepository.findAll());
 
-        return "mascotas/lista_mascotas";
+        return "mascotas/lista";
     }
 
     @GetMapping("/new")
