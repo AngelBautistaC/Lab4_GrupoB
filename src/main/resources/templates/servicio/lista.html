@@ -27,27 +27,19 @@
             <th>Entrega</th>
             <th>Responsable</th>
             <th>Servicio</th>
-
-            <th></th>
           </tr>
           <tr th:each="opserv,i : ${listaOpServ}">
             <td th:text="${i.index + 1}"></td>
             <td th:text="${opserv.idservicio.idmascota.nombre}"></td>
             <td th:text="${opserv.idservicio.idmascota.anho}"></td>
-
-
             <td th:text="${opserv.idservicio.horainicio}"></td>
             <td th:text="${opserv.idservicio.duracion} + min"></td>
             <td th:text="${opserv.idservicio.entrega}"></td>
             <td th:text="${opserv.idservicio.idresponsable.nombre}"></td>
             <td th:text="${opserv.idopcion.descripcion}"></td>
 
-            <td>
-              <a class="btn btn-success" th:href="@{'/servicio/editar?id=' + ${opserv.id}}">
-                Editar
-              </a>
-            </td>
           </tr>
+        </table>
       </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
