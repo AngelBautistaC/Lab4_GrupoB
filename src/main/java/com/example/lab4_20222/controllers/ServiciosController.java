@@ -38,7 +38,7 @@ public class ServiciosController {
     }
 
 
-    @GetMapping(value = "/guardarserv")
+    @GetMapping(value = "/crearserv")
     public String crearServ(Model model){
         model.addAttribute("listaOpcion", opcionRepository.findAll());
         model.addAttribute("listaMascotas", mascotaRepository.findAll());
