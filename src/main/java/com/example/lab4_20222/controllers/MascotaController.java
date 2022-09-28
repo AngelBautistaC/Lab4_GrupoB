@@ -6,10 +6,7 @@ import com.example.lab4_20222.repositories.RazaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -53,6 +50,32 @@ public class MascotaController {
         } else {
             return "redirect:/mascota/lista";
         }
+    }
+
+
+    @PostMapping("/save")
+    public String guardarMascota(Mascota mascota, RedirectAttributes attr, Model model) {
+
+        if (mascota.getIdmascota() == 0) {
+            attr.addFlashAttribute("msg", "Mascota creada exitosamente");
+        } else {
+            attr.addFlashAttribute("msg", "Mascota actualizada exitosamente");
+        }
+        if (mascota.getRaza_especie() != null) {
+            mascotaRepository.save(mascota);
+            return "redirect:/mascota/lista";
+        } else {
+            model.addAttribute("errProd", "Error al crear producto");
+            model.addAttribute("listaMascota", mascotaRepository.findAll());
+            model.addAttribute("listaRaza", razaRepository.findAll());
+            if (mascota.getIdmascota() != 0) {
+                model.addAttribute("mascota", mascota);
+                return "mascota/editar";
+            } else {
+                return "mascota/form";
+            }
+        }
+
     }
 
     @GetMapping("/delete")
