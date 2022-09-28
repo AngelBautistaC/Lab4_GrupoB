@@ -1,24 +1,38 @@
 package com.example.lab4_20222.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "opcion_servicio")
 public class OpcionServicio {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idopcion_servicio", nullable = false)
     private Integer id;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "opcion_idopcion", nullable = false)
-    private Opcion opcionIdopcion;
+    private Opcion idopcion;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "servicio_idservicio", nullable = false)
-    private Servicio servicioIdservicio;
+    private Servicio idservicio;
+
+    public Servicio getIdservicio() {
+        return idservicio;
+    }
+
+    public void setIdservicio(Servicio idservicio) {
+        this.idservicio = idservicio;
+    }
+
+    public Opcion getIdopcion() {
+        return idopcion;
+    }
+
+    public void setIdopcion(Opcion idopcion) {
+        this.idopcion = idopcion;
+    }
 
     public Integer getId() {
         return id;
@@ -27,21 +41,4 @@ public class OpcionServicio {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Opcion getOpcionIdopcion() {
-        return opcionIdopcion;
-    }
-
-    public void setOpcionIdopcion(Opcion opcionIdopcion) {
-        this.opcionIdopcion = opcionIdopcion;
-    }
-
-    public Servicio getServicioIdservicio() {
-        return servicioIdservicio;
-    }
-
-    public void setServicioIdservicio(Servicio servicioIdservicio) {
-        this.servicioIdservicio = servicioIdservicio;
-    }
-
 }

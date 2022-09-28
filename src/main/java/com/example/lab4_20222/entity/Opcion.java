@@ -1,38 +1,38 @@
 package com.example.lab4_20222.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "opcion")
 public class Opcion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idopcion", nullable = false)
     private Integer id;
 
-    @Size(max = 45)
-    @NotNull
     @Column(name = "descripcion", nullable = false, length = 45)
     private String descripcion;
 
-    @NotNull
     @Column(name = "tiempo_minutos", nullable = false)
-    private Integer tiempoMinutos;
+    private Integer tiempominutos;
 
-    @NotNull
     @Column(name = "precio", nullable = false)
-    private Float precio;
+    private Double precio;
 
-    public Integer getId() {
-        return id;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Integer getTiempominutos() {
+        return tiempominutos;
+    }
+
+    public void setTiempominutos(Integer tiempominutos) {
+        this.tiempominutos = tiempominutos;
     }
 
     public String getDescripcion() {
@@ -43,20 +43,13 @@ public class Opcion {
         this.descripcion = descripcion;
     }
 
-    public Integer getTiempoMinutos() {
-        return tiempoMinutos;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTiempoMinutos(Integer tiempoMinutos) {
-        this.tiempoMinutos = tiempoMinutos;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Float precio) {
-        this.precio = precio;
-    }
-
+    //TODO Reverse Engineering! Migrate other columns to the entity
 }

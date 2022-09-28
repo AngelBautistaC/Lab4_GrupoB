@@ -1,60 +1,52 @@
 package com.example.lab4_20222.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 @Entity
-@Table(name = "mascota")
-public class Mascota {
+@Table(name="mascota")
+public class Mascota{
     @Id
-    @Column(name = "idmascota", nullable = false)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "idmascota")
+    private int idmascota;
 
-    @Size(max = 45)
-    @NotNull
-    @Column(name = "nombre", nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
 
-    @Size(max = 45)
-    @NotNull
-    @Column(name = "anho", nullable = false, length = 45)
+    @Column(name = "anho")
     private String anho;
 
-    @NotNull
-    @Lob
-    @Column(name = "historia", nullable = false)
+    @Column(name = "historia")
     private String historia;
 
-    @NotNull
-    @Lob
-    @Column(name = "observaciones", nullable = false)
+    @Column(name = "observaciones")
     private String observaciones;
 
-    @Size(max = 45)
-    @NotNull
-    @Column(name = "sexo", nullable = false, length = 45)
+    @Column(name = "sexo")
     private String sexo;
+    @Column(name = "raza_otros")
+    private String raza_otros;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "raza_especie_idraza", nullable = false)
-    private RazaEspecie razaEspecieIdraza;
 
-    @Size(max = 45)
-    @Column(name = "raza_otros", length = 45)
-    private String razaOtros;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "raza_especie_idraza")
+    private Raza_especie raza_especie;
+
+
+    @ManyToOne
     @JoinColumn(name = "cuenta_idcuenta")
-    private Cuenta cuentaIdcuenta;
+    private Cuenta cuenta_idcuenta;
 
-    public Integer getId() {
-        return id;
+
+
+    public int getIdmascota() {
+        return idmascota;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdmascota(int idmascota) {
+        this.idmascota = idmascota;
     }
 
     public String getNombre() {
@@ -97,28 +89,28 @@ public class Mascota {
         this.sexo = sexo;
     }
 
-    public RazaEspecie getRazaEspecieIdraza() {
-        return razaEspecieIdraza;
+    public String getRaza_otros() {
+        return raza_otros;
     }
 
-    public void setRazaEspecieIdraza(RazaEspecie razaEspecieIdraza) {
-        this.razaEspecieIdraza = razaEspecieIdraza;
+    public void setRaza_otros(String raza_otros) {
+        this.raza_otros = raza_otros;
     }
 
-    public String getRazaOtros() {
-        return razaOtros;
+    public Raza_especie getRaza_especie() {
+        return raza_especie;
     }
 
-    public void setRazaOtros(String razaOtros) {
-        this.razaOtros = razaOtros;
+    public void setRaza_especie(Raza_especie raza_especie) {
+        this.raza_especie = raza_especie;
     }
 
-    public Cuenta getCuentaIdcuenta() {
-        return cuentaIdcuenta;
+    public Cuenta getCuenta_idcuenta() {
+        return cuenta_idcuenta;
     }
 
-    public void setCuentaIdcuenta(Cuenta cuentaIdcuenta) {
-        this.cuentaIdcuenta = cuentaIdcuenta;
+    public void setCuenta_idcuenta(Cuenta cuenta_idcuenta) {
+        this.cuenta_idcuenta = cuenta_idcuenta;
     }
-
 }
+
