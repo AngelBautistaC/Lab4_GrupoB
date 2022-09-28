@@ -53,7 +53,7 @@ public class MascotaController {
     }
 
 
-    @PostMapping("/save")
+    @PostMapping("/guardar")
     public String guardarMascota(Mascota mascota, RedirectAttributes attr, Model model) {
 
         if (mascota.getIdmascota() == 0) {
