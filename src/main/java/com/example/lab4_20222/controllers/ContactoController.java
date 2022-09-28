@@ -30,8 +30,8 @@ public class ContactoController {
 
 
     @GetMapping("/new")
-    public String newContactoForm(Model model) {
-
+    public String nuevoContactoForm(Model model) {
+        //model.addAttribute("listaContacto", cuentaRepository.findAll());
         return "contacto/newForm";
     }
 
