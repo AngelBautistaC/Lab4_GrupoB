@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
+    <div  th:replace="fragments/navbar.html :: cabecera(title='Página de prueba')">
+    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
@@ -10,8 +12,12 @@
     <title>Lista de Contactos</title>
   </head>
   <body>
+
+  <header th:replace="fragments/navbar.html ::navbar">
+
+  </header>
     <div class="container">
-      <h1>Lista de Contactos en TeleVet</h1>
+      <h1>Lista de Contactos en Candy&Crush</h1>
       <a class="btn btn-primary mt-4 mb-4" th:href="@{'/contacto/new'}">Nuevo Dueño</a>
       <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Pagina Principal</a>
       <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
