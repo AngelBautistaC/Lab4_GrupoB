@@ -30,18 +30,18 @@ public class ContactoController {
 
 
     @GetMapping("/new")
-    public String nuevoContactoForm(Model model) {
-        //model.addAttribute("listaContacto", cuentaRepository.findAll());
+    public String newContactoForm(Model model) {
+
         return "contacto/newForm";
     }
 
 
     @GetMapping("/editar")
-    public String editarContacto(@ModelAttribute("contacto") Cuenta contacto,
+    public String editContacto(@ModelAttribute("contacto") Cuenta contacto,
                                  @RequestParam("id") int id,
                                  Model model) {
         Optional<Cuenta> optcontacto = cuentaRepository.findById(id);
-        System.out.println(id);
+
         if (optcontacto.isPresent()) {
             contacto = optcontacto.get();
             model.addAttribute("contacto", contacto);
@@ -51,6 +51,8 @@ public class ContactoController {
             return "redirect:/contacto/lista";
         }
     }
+
+
 
 
 }
